@@ -26,8 +26,8 @@
     'data': [
         'security/access_groups.xml',
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/purchase_order_view_inherit.xml',
+        'views/res_users_view_inherit.xml',
         'report/purchase_order_report.xml'
     ],
     # only loaded in demonstration mode

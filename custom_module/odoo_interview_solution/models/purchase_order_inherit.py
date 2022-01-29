@@ -19,6 +19,10 @@ class PurchaseOrderInherit(models.Model):
             order.write({'state': 'to approve'})
         return True
 
+    def print_po(self):
+        print('Print PO', self.id)
+        return self.env.ref('odoo_interview_solution.report_signatured_purchase_order').report_action(self)
+
 
 class PurchaseOrderLineInherit(models.Model):
     _inherit = 'purchase.order.line'

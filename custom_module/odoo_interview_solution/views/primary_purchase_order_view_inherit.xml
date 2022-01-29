@@ -1,0 +1,92 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="primary_PO_tree_inherit">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_status']" position="after">
+                    <field name="flag_invisible"/>
+                    <field name="flag_invisible_md"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Inherit purchase buttons and add groups to it-->
+        <record model="ir.ui.view" id="primary_PO_form_inherit">
+            <field name="name">purchase_order_primary_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="flag_invisible"/>
+                    <field name="flag_invisible_md"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_rfq_send'][1]" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.purchase_group_procurement</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_rfq_send'][2]" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.purchase_group_procurement</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_rfq_send'][3]" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.purchase_group_procurement</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_confirm'][1]" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.group_coo</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_confirm'][2]" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.group_coo</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_approve']" position="attributes">
+                    <attribute name="groups">odoo_interview_solution.group_coo</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('flag_invisible', '=', True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//header" position="attributes">
+                    <attribute name="groups">!odoo_interview_solution.group_vendor</attribute>
+                </xpath>
+
+                <xpath expr="//header" position="inside">
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order MD"
+                            class="oe_highlight" groups="odoo_interview_solution.group_md"
+                            attrs="{'invisible': ['|', ('flag_invisible_md', '=', True)]}"
+                    />
+
+                    <button name="print_po" type="object" string="Print PO" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="new_action_new_purchase_order">
+            <field name="name">New Purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to create a Purchase.</p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="view_action_purchase_order_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="primary_PO_tree_inherit"/>
+            <field name="act_window_id" ref="new_action_new_purchase_order"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="view_action_purchase_order_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="primary_PO_form_inherit"/>
+            <field name="act_window_id" ref="new_action_new_purchase_order"/>
+        </record>
+    </data>
+</odoo>

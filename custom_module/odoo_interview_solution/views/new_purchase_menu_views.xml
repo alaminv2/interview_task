@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem
+                id="menu_new_purchase"
+                name="New Purchase"
+                action="odoo_interview_solution.new_action_new_purchase_order"
+        />
+    </data>
+</odoo>

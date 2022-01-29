@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="print_purchase_report_wizard_form" model="ir.ui.view">
+        <field name="name">Print Purchase Reports</field>
+        <field name="model">print.purchase.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Print Purchase Reports">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_po" string="Print Reports" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_print_purchase_reports_wizard"
+                name="Print Purchase Reports"
+                res_model="print.purchase.report.wizard"
+                view_mode="form"
+                target="new"
+    />
+
+    <menuitem
+            id="menu_po_print_wizard"
+            name="Print Purchase Reports"
+            action="action_print_purchase_reports_wizard"
+            parent="odoo_interview_solution.menu_new_purchase"
+    />
+</odoo>

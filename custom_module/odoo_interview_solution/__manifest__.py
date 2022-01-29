@@ -26,9 +26,13 @@
     'data': [
         'security/access_groups.xml',
         'security/ir.model.access.csv',
-        'views/purchase_order_view_inherit.xml',
+        # 'views/purchase_order_view_inherit.xml',
+        'views/primary_purchase_order_view_inherit.xml',
+        'views/new_purchase_menu_views.xml',
         'views/res_users_view_inherit.xml',
-        'report/purchase_order_report.xml'
+        'wizard/print_purchase_report_wizard_view.xml',
+        'report/multiple_purchase_order_report.xml',
+        'report/purchase_order_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
